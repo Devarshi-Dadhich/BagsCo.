@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Admin | Add Product</title>
+    <link rel="stylesheet" href="/stylesheets/adminPanel.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Scatch</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Shop</a>
+            <a href="/vendors/admin">Admin</a>
+            <% if (!isLoggedIn) { %>
+                <a href="/users/login" class="btn">Sign In</a>
+            <% } else { %>
+                <a href="/users/profile/<%= user._id %>" class="btn">Profile</a>
+            <% } %>
+        </nav>
+    </header>
+    <main>
+        <section class="admin-section">
+            <form class="admin-form" action="/products/add" method="POST" enctype="multipart/form-data">
+                <h2>Add New Product</h2>
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input type="text" id="name" name="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price (₹)</label>
+                    <input type="number" id="price" name="price" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="discount">discount (₹)</label>
+                    <input type="number" id="price" name="discount" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Product Image</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <button type="submit" class="shop-btn">Add Product</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Scatch. All rights reserved.
+    </footer>
+</body>
+</html>

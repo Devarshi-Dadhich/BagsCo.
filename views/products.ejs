@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Scatch</title>
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">Scatch</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Shop</a>
+            <a href="/vendors/apply">Contact</a>
+            <% if (!isLoggedIn) { %>
+                <a href="/users/login" class="btn">Sign In</a>
+            <% } else { %>
+                <a href="/users/profile/<%= user._id %>" class="btn">Profile</a>
+                
+            <% } %>
+        </nav>   
+    </header>
+    <main>
+        <section class="product-grid">
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/uploads/<%= product.image %>" alt="<%= product.productName %>">
+                    </div>
+                    <div class="product-info">
+                        <h2><%= product.productName %></h2>
+                        <p class="desc"><%= product.description %></p>
+                        <div class="price-row">
+                            <span class="price">₹<%= product.price %></span>
+                            <a href="/products/shop/<%= product._id %>" class="view-btn">View</a>
+                        </div>
+                        <span><%= product.discount %> %off</span>
+                    </div>
+                </div>
+            <% }) %>
+        </section>
+    </main>
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Scatch. All rights reserved.  
+    </footer>
+</body>
+</html>

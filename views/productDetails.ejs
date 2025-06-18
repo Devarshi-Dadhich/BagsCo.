@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= product.productName %> | Scatch</title>
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .product-details-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 2.5rem;
+            padding: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .product-details-img {
+            flex: 1 1 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f2f6;
+            border-radius: 18px;
+            min-width: 280px;
+            min-height: 320px;
+        }
+        .product-details-img img {
+            max-width: 100%;
+            max-height: 340px;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+        .product-details-info {
+            flex: 2 1 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+        .product-details-info h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .product-details-info .desc {
+            font-size: 1.1rem;
+            color: #636e72;
+        }
+        .product-details-info .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0984e3;
+        }
+        .product-details-info .discount {
+            font-size: 1.1rem;
+            color: #00b894;
+            font-weight: 600;
+        }
+        .product-details-info .buy-btn {
+            margin-top: 1.5rem;
+            padding: 0.9rem 2.5rem;
+            background: #0984e3;
+            color: #fff;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(9,132,227,0.08);
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+            width: fit-content;
+        }
+        .product-details-info .buy-btn:hover {
+            background: #74b9ff;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Scatch</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Shop</a>
+            <a href="/vendors/apply">Contact</a>
+            <% if (!isLoggedIn) { %>
+                <a href="/users/login" class="btn">Sign In</a>
+            <% } else { %>
+                <a href="/users/profile/<%= user._id %>" class="btn">Profile</a>
+            <% } %>
+        </nav>
+    </header>
+    <main>
+        <div class="product-details-container">
+            <div class="product-details-img">
+                <img src="/uploads/<%= product.image %>" alt="<%= product.productName %>">
+            </div>
+            <div class="product-details-info">
+                <h1><%= product.productName %></h1>
+                <p class="desc"><%= product.description %></p>
+                <div>
+                    <span class="price">₹<%= product.price %></span>
+                    <% if (product.discount && product.discount > 0) { %>
+                        <span class="discount"> | <%= product.discount %>% off</span>
+                    <% } %>
+                </div>
+                <button class="buy-btn"><a href="/products/cart/<%= product._id %>" style=" text-decoration: none; color: #fff;">Add To Cart</a></button>
+            </div>
+        </div> 
+    </main>
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Scatch. All rights reserved.
+    </footer>
+</body>
+</html>

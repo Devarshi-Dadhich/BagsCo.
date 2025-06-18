@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Scatch</title>
+</head>
+<body>
+    <header>
+        <div class="logo">Scatch</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Shop</a>
+            <a href="/vendors/apply">Contact</a>
+            <% if (!isLoggedIn) { %>
+                <a href="/users/login" class="btn">Sign In</a>
+            <% } else { %>
+                <a href="/users/profile/<%= user._id %>" class="btn">Profile</a>
+            <% } %>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Discover Premium Bags</h1>
+            <p>Elevate your style with our exclusive collection of luxury bags.</p>
+            <a href="/products" class="shop-btn">Shop Now</a>
+        </section>
+    </main>
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Scatch. All rights reserved.
+    </footer>
+</body>
+</html>

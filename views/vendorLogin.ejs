@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | Scatch</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">Scatch</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Shop</a>
+            <a href="/vendors/apply">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="form-section">
+            <form class="signup-form" action="/vendors/login" method="POST">
+                <h2>Become a Vendor</h2>
+                <div class="form-group">
+                    <label for="vendorName">Full Name / Business Name</label>
+                    <input type="text" id="vendorName" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="vendorEmail">Email Address</label>
+                    <input type="email" id="vendorEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="vendorPhone">Phone Number</label>
+                    <input type="tel" id="vendorPhone" name="contact" required>
+                </div>
+                <div class="form-group">
+                    <label for="vendorPassword">Enter Password</label>
+                    <input id="vendorMessage" name="password" type="password" required>
+                </div>
+                <button type="submit">Submit</button>
+                <p class="form-footer">Create an account? <a href="/vendors/apply">Register</a></p>
+            </form>
+        </section>
+    </main>
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Scatch. All rights reserved.
+    </footer>
+</body>

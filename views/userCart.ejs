@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart | Scatch</title>
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .cart-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .cart-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .cart-table th, .cart-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dfe6e9;
+            text-align: left;
+        }
+        .cart-table th {
+            background: #f8f9fa;
+            color: #636e72;
+        }
+        .cart-table img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0984e3;
+            margin-bottom: 1.5rem;
+        }
+        .checkout-btn {
+            display: block;
+            margin-left: auto;
+            background: #0984e3;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.8rem 2.5rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .checkout-btn:hover {
+            background: #74b9ff;
+            color: #222;
+        }
+        @media (max-width: 700px) {
+            .cart-container {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+            .cart-table th, .cart-table td {
+                padding: 0.5rem;
+            }
+            .cart-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Scatch</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Shop</a>
+            <a href="/vendors/apply">Contact</a>
+            <a href="/users/logout" class="btn">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <div class="cart-container">
+            <div class="cart-title">Your Cart</div>
+            <% if (product && product.length > 0) { %>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% let total = 0; %>
+                    <% product.forEach(item => { 
+                        const subtotal = item.price;
+                        total += subtotal;
+                    %>
+                    <tr>
+                        <td><img src="/uploads/<%= item.image %>" alt="<%= item.productName %>"></td>
+                        <td><%= item.productName %></td>
+                        <td>₹<%= item.price %></td>
+                        <td><input type="number" style="width: 3.5vh;"></td>
+                        <td>₹<%= subtotal %></td>
+                        <td>
+                            <form action="/users/cart/remove/<%= product._id %>" method="POST" style="display:inline;">
+                                <button type="submit" style="background:none;border:none;color:#d63031;cursor:pointer; margin-bottom: 2vh;font: bolder;">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div class="cart-total">Total: ₹<%= total %></div>
+            <a href="/products/payment" class="checkout-btn">Proceed to Checkout</a>
+            <% } else { %>
+                <div style="text-align:center; color:#636e72; font-size:1.2rem;">Your cart is empty.</div>
+            <% } %>
+        </div>
+    </main>
+    <footer>
+        &copy; <%= new Date().getFullYear() %> Scatch. All rights reserved.
+    </footer>
+</body>
+</html>

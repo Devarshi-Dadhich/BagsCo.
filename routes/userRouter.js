@@ -35,6 +35,21 @@ router.get("/profile/:id",isLoggedIn, async (req, res) => {
     }
 });
 
+router.get("/cart/:id", isLoggedIn, async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const userData = await user.findOne({ _id: userId });
+        if (!userData) {    
+            return res.status(404).send("User not found");
+        } 
+        res.render("userCart", { product: userData.cart });
+    }
+    catch (error) {
+        console.error(error);
+    }
+
+});
+
 router.get("/logout",logoutUser);
 
 router.post("/login", loginUser);

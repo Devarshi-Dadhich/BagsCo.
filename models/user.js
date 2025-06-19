@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import product from './product.js';
 
 const userSchema = mongoose.Schema({
     fullname : {
@@ -14,8 +15,8 @@ const userSchema = mongoose.Schema({
     },
     contact : Number,
     cart : [{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"product"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "product"
     }],
     orders: {
         type:Array,

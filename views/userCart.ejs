@@ -93,7 +93,7 @@
     <main>
         <div class="cart-container">
             <div class="cart-title">Your Cart</div>
-            <% if (product && product.length > 0) { %>
+            <% if (cart && cart.length > 0) { %>
             <table class="cart-table">
                 <thead>
                     <tr>
@@ -107,8 +107,8 @@
                 </thead>
                 <tbody>
                     <% let total = 0; %>
-                    <% product.forEach(item => { 
-                        const subtotal = item.price;
+                    <% cart.forEach(item => { 
+                        const subtotal = item.price * (item.quantity || 1);
                         total += subtotal;
                     %>
                     <tr>
@@ -118,7 +118,7 @@
                         <td><input type="number" style="width: 3.5vh;"></td>
                         <td>₹<%= subtotal %></td>
                         <td>
-                            <form action="/users/cart/remove/<%= product._id %>" method="POST" style="display:inline;">
+                            <form action="/users/cart/remove/<%= item._id %>" method="POST" style="display:inline;">
                                 <button type="submit" style="background:none;border:none;color:#d63031;cursor:pointer; margin-bottom: 2vh;font: bolder;">Remove</button>
                             </form>
                         </td>

@@ -52,14 +52,8 @@ router.get("/cart/:id",isLoggedIn, async (req, res) => {
         res.status(500).send("Server error");
     }
 });
-router.get("/users/cart/remove/:id", async (req,res)=>{
 
-    const productId = req.params.id;
-    const currentUser = await user.findOne({ email: req.user.email })
 
-    currentUser.cart.push(productId);
-    await currentUser.save();
-})
 
 router.get("/payment",isLoggedIn,(req,res)=>{
     const isLoggedIn = !!req.user;

@@ -5,7 +5,7 @@ import config from 'config';
 
 const log = debug('app:mongoose');
 
-mongoose.connect(`${config.get('MONGO_URI')}/Scatch`)
+mongoose.connect(`${config.get('MONGO_URI')}/BagsCo.`)
 .then(()=>{
     log("connected");
 })

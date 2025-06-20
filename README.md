@@ -1,4 +1,4 @@
-# Scatch
+# BagsCo.
 
 A modern e-commerce web application built with Node.js, Express, MongoDB, and EJS.
 

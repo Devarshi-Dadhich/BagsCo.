@@ -41,5 +41,7 @@ app.use('/users',userRouter)
 app.use('/vendors',vendorRouter)
 app.use('/products',productRouter)
 
-const PORT = 3000;
-app.listen(PORT)
+
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT || 3000}`);
+});

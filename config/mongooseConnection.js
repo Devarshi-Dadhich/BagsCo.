@@ -5,7 +5,10 @@ import config from 'config';
 
 const log = debug('app:mongoose');
 
-mongoose.connect(`${config.get('MONGO_URI')}/BagsCo.`)
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
 .then(()=>{
     log("connected");
 })

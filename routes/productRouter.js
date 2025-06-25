@@ -1,6 +1,7 @@
 import express from 'express';
 import Product from '../models/product.js';
 import multer from 'multer';
+import { storage } from '../utils/cloudinary.js';
 import user from '../models/user.js';
 import {isLoggedIn ,isVendor }from '../middlewares/isLoggedIn.js';
 import loginStatus from '../middlewares/loginStatus.js';
@@ -8,7 +9,7 @@ import ListProducts from '../controllers/productListing.js';
 
 const router = express.Router();
 
-const upload  = multer({ dest: 'public/uploads' });
+const upload  = multer({ storage: storage });
 
 router.get("/", async(req,res)=>{
     const  isLoggedIn = !!req.user;
@@ -53,13 +54,17 @@ router.get("/cart/:id",isLoggedIn, async (req, res) => {
     }
 });
 
-
-
 router.get("/payment",isLoggedIn,(req,res)=>{
     const isLoggedIn = !!req.user;
     res.render("payment",{ isLoggedIn });
 })
 
 router.post("/add",isVendor, upload.single('image'), ListProducts)
+
+router.post('/upload', upload.single('image'), (req, res) => {
+  res.send({
+    image: req.file.path
+  });
+});
 
 export default router;

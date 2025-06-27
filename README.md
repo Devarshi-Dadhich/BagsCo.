@@ -8,7 +8,6 @@ A modern e-commerce web application built with Node.js, Express, MongoDB, and EJ
 
 - User authentication (register/login/logout)
 - Vendor registration and product listing
-- Product catalog with search and filtering
 - Product detail pages
 - Add to cart and view cart
 - Responsive design for all devices
@@ -34,5 +33,5 @@ A modern e-commerce web application built with Node.js, Express, MongoDB, and EJ
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Devarshi-Dadhich/Scatch.git
-cd Scatch
+git clone https://github.com/Devarshi-Dadhich/BagsCo.git
+cd BagsCo
